@@ -28,3 +28,10 @@ svg.append('line')
   .attr('x2',400)
   .attr('y2',120)
   .attr('stroke','rgba(255,30,80)');
+
+  svg.append('text')
+    .attr('x',20)
+    .attr('y',200)
+    .attr('fill','grey')
+    .text('Hey,dummies ：)')
+    .style('font-family','arial');
