@@ -7,31 +7,34 @@ const svg = canvas.append('svg')
     .attr('height',600)
     .attr('width',600);
 
+const group = svg.append('g')
+  .attr('transform','translate(0,100)');
+
 //append shapes to svg container
-svg.append('rect')
+group.append('rect')
   .attr('width',200)
   .attr('height',100)
   .attr('fill','blue')
   .attr('x',20)
   .attr('y',20);
 
-svg.append('circle')
+group.append('circle')
   .attr('r',45)
   .attr('cx',300)
   .attr('cy',70)
   .attr('fill','pink');
 
 
-svg.append('line')
+group.append('line')
   .attr('x1',370)
   .attr('y1',20)
   .attr('x2',400)
   .attr('y2',120)
   .attr('stroke','rgba(255,30,80)');
 
-  svg.append('text')
-    .attr('x',20)
-    .attr('y',200)
-    .attr('fill','grey')
-    .text('Hey,dummies ：)')
-    .style('font-family','arial');
+svg.append('text')
+  .attr('x',20)
+  .attr('y',200)
+  .attr('fill','grey')
+  .text('Hey,dummies ：)')
+  .style('font-family','arial');
