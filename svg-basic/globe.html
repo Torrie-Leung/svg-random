@@ -12,6 +12,22 @@
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136 166">
       <!-- ellipse -->
       <ellipse id="shade" cx="68" cy="150" rx="40" ry="7"></ellipse>
+
+      <g clip-path="url(#outer)">
+        <use id="sea" xlink:href="#circle"></use>
+
+        <!-- shade -->
+        <rect id="ghost" mask="url(#light)" width="300" height="300"></rect>
+      </g>
+      <!-- earth -->
+      <clipPath id="outer">
+        <circle id="circle" cx="68" cy="68" r="68"></circle>
+      </clipPath>
+
+      <!-- shade -->
+      <mask id="light">
+        <use xlink:href="#circle" x="-5" y="-12"></use>
+      </mask>
     </svg>
   </figure>
 </body>
