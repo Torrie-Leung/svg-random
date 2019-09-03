@@ -24,4 +24,56 @@ figure #ghost{
 }
 figure #land{
   fill:#8B9C52;
+  animation: spin 10s infinite forwards;
+}
+figure #boat1{
+  transform: translateX(40px) translateY(-80px);
+  
+}
+figure #boat1 use{
+  fill:#F0FBFC;
+  animation: orbit 15s linear infinite;
+  animation-delay: 3s;
+}
+figure .vehicles use{
+  fill:#F0FBFC;
+  transform-origin: center center;
+  animation: orbit 15s linear infinite;
+}
+figure #plane1{
+  transform: translateX(-10px) translateY(170px);
+}
+figure #plane2{
+  transform: translateX(170px) translateY(150px);
+}
+figure #plane2 use{
+  animation-delay: 5s;
+}
+figure #plane3{
+  transform: translateX(140px) translateY(-50px);
+}
+figure #plane3 use{
+  animation-delay: 2.5s;
+  animation-duration: 13s;
+}
+figure #bike1{
+  transform: translateX(50px) translateY(190px);
+}
+
+@keyframes spin{
+  from{
+    transform: translateX(-300px);
+  }
+  to{
+    transform: translateX(0px);
+  }
+}
+
+@keyframes orbit{
+  from{
+    transform:rotate(0deg) translateX(-160px);
+  }
+  to{
+    transform:rotate(360deg) translateX(-160px);
+  }
 }
