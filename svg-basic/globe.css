@@ -22,3 +22,6 @@ figure #light{
 figure #ghost{
   fill:rgba(255,255,255,0.3)
 }
+figure #land{
+  fill:#8B9C52;
+}
