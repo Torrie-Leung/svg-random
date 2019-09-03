@@ -1,0 +1,13 @@
+body{
+  background:#F7F4E4;
+}
+
+figure{
+  width: 50%;
+  margin: 8vh auto;
+  max-width: 80vh;
+}
+
+figure #shade{
+  fill: rgba(0,0,0,0.05)
+}
