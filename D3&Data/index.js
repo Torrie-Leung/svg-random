@@ -11,11 +11,7 @@ const rect = svg.select('rect')
     console.log(n[i]);
     return d.width
   })
-  .attr('height',(d,i,n)=>{
-    return d.height
-  })
-  .attr('fill',(d,i,n)=>{
-    return d.fill
-  })
+  .attr('height',d=>d.height)
+  .attr('fill',d=>d.fill)
 
   console.log(rect)
