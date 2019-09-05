@@ -8,15 +8,13 @@ const rect = svg.select('rect')
   .data(data)
   .attr('width',(d,i,n)=>{
     console.log('arrow function this: ',this)
-    console.log(i);
-    console.log(n);
+    console.log(n[i]);
     return d.width
   })
-  .attr('height',function(d){
-    console.log('traditional function this: ', this)
+  .attr('height',(d,i,n)=>{
     return d.height
   })
-  .attr('fill',function(d){
+  .attr('fill',(d,i,n)=>{
     return d.fill
   })
 
