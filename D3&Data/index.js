@@ -6,7 +6,7 @@ const data = [
 
 const svg = d3.select('svg');
 
-const rect = svg.selectAll('rect')
+const rects = svg.selectAll('rect')
   .data(data)
   .attr('width',(d,i,n)=>{
     //console.log('arrow function this: ',this)
@@ -16,4 +16,14 @@ const rect = svg.selectAll('rect')
   .attr('height',d=>d.height)
   .attr('fill',d=>d.fill)
 
-  console.log(rect)
+  console.log(rects)
+
+  rects.enter()
+    .append('rect')
+    .attr('width',(d,i,n)=>{
+    //console.log('arrow function this: ',this)
+    console.log(n[i]);
+    return d.width
+  })
+  .attr('height',d=>d.height)
+  .attr('fill',d=>d.fill)
