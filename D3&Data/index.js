@@ -5,10 +5,11 @@ const data = [
 ];
 
 const svg = d3.select('svg');
-
+//Join data to rects
 const rects = svg.selectAll('rect')
-  .data(data)
-  .attr('width',(d,i,n)=>{
+  .data(data);
+//add attrs to rects already in the DOM
+  rects.attr('width',(d,i,n)=>{
     //console.log('arrow function this: ',this)
     console.log(n[i]);
     return d.width
@@ -17,7 +18,7 @@ const rects = svg.selectAll('rect')
   .attr('fill',d=>d.fill)
 
   console.log(rects)
-
+//append the enter selection to DOM
   rects.enter()
     .append('rect')
     .attr('width',(d,i,n)=>{
