@@ -32,18 +32,29 @@ d3.json('menu.json').then(data => {
   // console.log(y(0))
   // console.log(y(999))
   // console.log(y(1004))
+
+  // create a band scale
+  const x = d3.scaleBand()
+    .domain(data.map(item => item.name))
+    .range([0,600])
+    .paddingInner(0.2)
+    .paddingOuter(0.2);
+
+  console.log(x("veg pasta"))
+  console.log(x.bandwidth())
+
   const charts = line.selectAll('rect')
     .data(data)
   //console.log(charts)
-  charts.attr('width',50)
+  charts.attr('width',x.bandwidth)
     .attr('height', d => y(d.orders))
     .attr('fill', 'orange')
-    .attr('x',(d,i) => i*70)
+    .attr('x',(d,i) => x(d.name))
 
   charts.enter()
     .append('rect')
-      .attr('width',50)
+      .attr('width',x.bandwidth)
       .attr('height', d => y(d.orders))
       .attr('fill', 'orange')
-      .attr('x',(d,i) => i*70)
+      .attr('x',(d,i) => x(d.name))
 })
