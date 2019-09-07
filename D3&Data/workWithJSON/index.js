@@ -26,12 +26,17 @@ const line = d3.select('#line');
 //console.log(line)
 d3.json('menu.json').then(data => {
 
+  const min = d3.min(data,d =>d.orders);
+  const max = d3.max(data,d =>d.orders);
+  const extent = d3.extent(data,d => d.orders);
+  console.log(min,max,extent)
   const y = d3.scaleLinear()
-    .domain([0,1000])
-    .range([0,500]);
+    .domain([0,max])
+    .range([0,600]);
   // console.log(y(0))
   // console.log(y(999))
   // console.log(y(1004))
+
 
   // create a band scale
   const x = d3.scaleBand()
@@ -40,8 +45,8 @@ d3.json('menu.json').then(data => {
     .paddingInner(0.2)
     .paddingOuter(0.2);
 
-  console.log(x("veg pasta"))
-  console.log(x.bandwidth())
+  //console.log(x("veg pasta"))
+  //console.log(x.bandwidth())
 
   const charts = line.selectAll('rect')
     .data(data)
