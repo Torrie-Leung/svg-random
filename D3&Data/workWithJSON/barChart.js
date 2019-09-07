@@ -2,17 +2,21 @@
 const svg = d3.select('.canvas')
   .append('svg')
     .attr('width',600)
-    .attr('height',600);
+    .attr('height',605);
 
 //create margins and dimensions
-const margin = {top:2,right:2,bottom:10,left:10};
-const grpahWidth = 600 - margin.left -margin.right;
-const grpahHeight = 600 - margin.top -margin.bottom;
+const margin = {top:10,right:10,bottom:15,left:25};
+const graphWidth = 600 - margin.left -margin.right;
+const graphHeight = 600 - margin.top -margin.bottom;
 
 const graph =svg.append('g')
-  .attr('width',grpahWidth)
-  .attr('height',grpahHeight)
+  .attr('width',graphWidth)
+  .attr('height',graphHeight)
   .attr('transform',`translate(${margin.left},${margin.top})`)
+
+const xAxisGroup = graph.append('g')
+  .attr('transform',`translate(0,${graphHeight})`);
+const yAxisGroup = graph.append('g');
 
 d3.json('menu.json').then(data => {
   const min = d3.min(data, d => d.orders);
@@ -20,7 +24,7 @@ d3.json('menu.json').then(data => {
 
   const y = d3.scaleLinear()
     .domain([0,max])
-    .range([0,600]);
+    .range([0,graphHeight]);
 
   const x = d3.scaleBand()
     .domain(data.map(item => item.name))
@@ -36,10 +40,18 @@ d3.json('menu.json').then(data => {
     .attr('fill', 'orange')
     .attr('x',(d,i) => x(d.name))
 
+//append the enter selection to the DOM
   rects.enter()
     .append('rect')
       .attr('width',x.bandwidth)
       .attr('height', d => y(d.orders))
       .attr('fill', 'orange')
       .attr('x',(d,i) => x(d.name))
+
+//create and call the axes
+  const xAxis = d3.axisBottom(x);
+  const yAxis = d3.axisLeft(y);
+
+  xAxisGroup.call(xAxis);
+  yAxisGroup.call(yAxis);
 })
