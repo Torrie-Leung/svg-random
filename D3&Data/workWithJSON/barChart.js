@@ -1,11 +1,11 @@
 //select the contianer fisrt
 const svg = d3.select('.canvas')
   .append('svg')
-    .attr('width',600)
-    .attr('height',605);
+    .attr('width',1200)
+    .attr('height',705);
 
 //create margins and dimensions
-const margin = {top:10,right:10,bottom:15,left:30};
+const margin = {top:10,right:10,bottom:15,left:130};
 const graphWidth = 600 - margin.left -margin.right;
 const graphHeight = 600 - margin.top -margin.bottom;
 
@@ -41,7 +41,7 @@ d3.json('menu.json').then(data => {
     .attr('x',(d,i) => x(d.name))
     .attr('y',(d,i) => y(d.orders))
   //console.log(graphHeight-y(200))
-  
+
 //append the enter selection to the DOM
   rects.enter()
     .append('rect')
@@ -53,8 +53,15 @@ d3.json('menu.json').then(data => {
 
 //create and call the axes
   const xAxis = d3.axisBottom(x);
-  const yAxis = d3.axisLeft(y);
+  const yAxis = d3.axisLeft(y)
+    .ticks(7)
+    .tickFormat(tickNum => tickNum + ' orders');
 
   xAxisGroup.call(xAxis);
   yAxisGroup.call(yAxis);
+
+  xAxisGroup.selectAll('text')
+    .attr('transform','rotate(-45)')
+    .attr('text-anchor','end')
+    .attr('fill','orange')
 })
