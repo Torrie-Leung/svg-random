@@ -80,19 +80,13 @@ db.collection('dishes').get().then(res => {
   res.docs.forEach(doc => {
     data.push(doc.data());
   })
-  console.log(data)
-  const min = d3.min(data, d => d.orders);
-  const max = d3.max(data, d => d.orders);
-
-  
-  
-  //console.log(rects)
-  
-  //console.log(graphHeight-y(200))
 
   update(data)
 
-  
+  d3.interval(() =>{
+    data[0].orders += 50;
+    update(data)
+  },1000)
 
   
 
