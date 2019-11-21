@@ -37,6 +37,7 @@ const cubeThree = cubeTwo.copy({
   }
 })
 
+
 function animateCubes(){
   cubes.rotate.y += 0.011;
   cubes.rotate.x += 0.012;
