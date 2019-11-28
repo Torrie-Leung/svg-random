@@ -19,12 +19,30 @@ header{
 }
 
 .grid{
+  position: relative;
   float: left;
   width: 300px;
   height: 460px;
   margin: 20px 15px;
 }
+.grid svg{
+  position: absolute;
+  left: 0;
+  top:0;
+}
 .grid svg line{
-  stroke-width: 10;
-  stroke:#eee;
+  stroke-width: 4;
+  stroke:#abcdef;
+  transition: .7s;
+}
+.grid svg:hover line{
+  stroke-width: 14;
+}
+.grid svg line.top{
+  
+}
+.grid svg:hover line.top{
+  stroke-dasharray: 330,240;
+  transform: translateX(-300px);
+  
 }
