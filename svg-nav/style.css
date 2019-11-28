@@ -16,7 +16,6 @@ header{
   width: 1000px;
   height: 500px;
   margin: 50px auto 0;
-  background: #eee;
 }
 
 .grid{
@@ -24,5 +23,8 @@ header{
   width: 300px;
   height: 460px;
   margin: 20px 15px;
-  background: khaki;
+}
+.grid svg line{
+  stroke-width: 10;
+  stroke:#eee;
 }
