@@ -4,6 +4,12 @@
   transform-origin:  50% 50%;
   animation: line-grow 500ms ease-in-out;
 }
+.icon:hover .line-two{
+  animation-delay: 75ms;
+}
+.icon:hover .line-three{
+  animation-delay: 150ms;
+}
 
 @keyframes line-grow{
   0% { transform: scaleX(1)}
