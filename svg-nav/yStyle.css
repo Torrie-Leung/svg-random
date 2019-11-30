@@ -1,0 +1,12 @@
+.icon:hover .line-one,
+.icon:hover .line-two,
+.icon:hover .line-three{
+  transform-origin:  50% 50%;
+  animation: line-grow 500ms ease-in-out;
+}
+
+@keyframes line-grow{
+  0% { transform: scaleX(1)}
+  5% { transform: scaleX(1.5)}
+  100% { transform: scaleX(1)}
+}
