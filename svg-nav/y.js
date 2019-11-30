@@ -17,7 +17,7 @@ window.onload = function(){
   toggleMenu
     .to(lineTwo,.25,{scaleX:0})
     .to(lineOne,.25,{rotation:45,transformOrigin:"50% 50%",y:8})
-    .to(lineThree,.25,{rotation:-45,x:8,y:8})
+    .to(lineThree,.25,{rotation:-45,transformOrigin:"50% 50%",y:-8})
 
   icon.addEventListener('click', _ =>{
     console.log('clicked')
