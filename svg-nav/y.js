@@ -14,7 +14,7 @@ window.onload = function(){
     if(icon.classList.contains('js-x')){
       return;
     }
-    tlm.staggerTo(lines,0.15,{scaleX:1.5,repeat:1,yoyo:true,ease:Power2.easeInOut},0.175)
+    tlm.staggerTo(lines,0.25,{scaleX:1.5,repeat:1,yoyo:true,ease:Power2.easeInOut,svgOrigin:'50 50'},0.125)
   })
 
   toggleMenu
