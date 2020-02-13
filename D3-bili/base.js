@@ -7,16 +7,27 @@ const height = 300;
 const padding = {top:20,right:20,left:20,bottom:20};
 const rectStep = 35;
 const rectWidth = 30;
+const xAxisWidth = width - padding.left -padding.right
+const yAxisHeight = width - padding.top -padding.bottom
 const svg = d3.select("#svg")
               .append("svg")
               .attr("width",width)
               .attr("height",height);
+const xScale = d3.scaleBand().domain(dataset.map((o,i) => i)).range([0,xAxisWidth]).padding(0,1);
+const yScale = d3.scaleLinear().domain([0,d3.max(dataset)]).rangeRound([yAxisHeight,0]);
+const xAxis = d3.axisBottom(xScale);
+const gX = svg.append("g").attr("transform",`translate(${padding.left},${height - padding.bottom})`)
+gX.call(xAxis)
+const yAxis = d3.axisLeft(yScale);
+const gY = svg.append("g").attr("transform",`translate(${padding.left},${height - padding.bottom-yAxisHeight})`)
+gY.call(yAxis)
+
 
 const genRect = obj => {
   obj.attr("fill","#daa520")
-    .attr("x",(data,index) => padding.left+index*rectStep)
+    .attr("x",(data,index) => padding.left+xScale(index))
     .attr("y",(data,index) => height-padding.bottom-data)
-    .attr("width",rectWidth)
+    .attr("width",xScale.bandwidth())
     .attr("height",data=>data);
 }
 // genRect(svg.selectAll("rect").data(dataset).enter().append("rect"))
@@ -32,12 +43,13 @@ const genRect = obj => {
 
 const genText = obj => {
   obj.attr("fill","#fff")
+      .attr("class","number")
       .attr("font-size","12px")
       .attr("text-anchor","middle")
-      .attr("x",(data,index)=>padding.left+index*rectStep)
-      .attr("y",(data,index) => height-padding.bottom-data)
+      .attr("x",(data,index)=>padding.left+xScale(index))
+      .attr("y",(data,index) => height-padding.bottom-(yScale(0)-yScale(data)))
       .text(data=>data)
-      .attr("dx",rectWidth/2)
+      .attr("dx",xScale.bandwidth()/2)
       .attr("dy","1em");
 }
 // genText(svg.selectAll("text").data(dataset).enter().append("text"))
@@ -54,7 +66,7 @@ const genText = obj => {
 
 const init = (dataset,callback) =>{
   genRect(svg.selectAll("rect").data(dataset).enter().append("rect"));
-  genText(svg.selectAll("text").data(dataset).enter().append("text"));
+  genText(svg.selectAll(".number").data(dataset).enter().append("text"));
   setTimeout(()=>{
     update(dataset1)
   },3000)
@@ -62,7 +74,8 @@ const init = (dataset,callback) =>{
 
 const update = dataset =>{
   genRect(svg.selectAll("rect").data(dataset));
-  genText(svg.selectAll("text").data(dataset));
+  genText(svg.selectAll(".number").data(dataset));
 };
 
 init(dataset);
+
